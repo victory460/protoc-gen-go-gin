@@ -74,6 +74,24 @@ func (resp default{{$.Name}}Resp) Success(ctx *gin.Context, data interface{}) {
 	resp.response(ctx, 200, 0, "成功", data)
 }
 
+func Capitalize(str string) string {
+	var upperStr string
+	vv := []rune(str)
+	for i := 0; i < len(vv); i++ {
+		if i == 0 {
+			if vv[i] >= 97 && vv[i] <= 122 {
+				vv[i] -= 32
+				upperStr += string(vv[i])
+			} else {
+				fmt.Println("Not begins with lowercase letter,")
+				return str
+			}
+		} else {
+			upperStr += string(vv[i])
+		}
+	}
+	return upperStr
+}
 
 {{range .Methods}}
 func (s *{{$.Name}}) {{ .HandlerName }} (ctx *gin.Context) {
