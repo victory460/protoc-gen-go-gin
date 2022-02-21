@@ -79,17 +79,23 @@ func (resp default{{$.Name}}Resp) Success(ctx *gin.Context, data interface{}) {
 func (s *{{$.Name}}) {{ .HandlerName }} (ctx *gin.Context) {
 	var in {{.Request}}
 {{if .HasPathParams }}
-	if err := ctx.ShouldBindUri(&in); err != nil {
-		s.resp.ParamsError(ctx, err)
-		return
+	if len(ctx.Params) > 0 { // uri path params
+		rv := reflect.ValueOf(&in)
+		for _, item := range ctx.Params {
+			key := Capitalize(item.Key)
+			switch rv.Elem().FieldByName(key).Type().String() {
+			case "string":
+				rv.Elem().FieldByName(key).SetString(item.Value)
+				//case "int":
+			}
+		}
 	}
 {{end}}
-{{if eq .Method "GET" "DELETE" }}
+{{if eq .Method "GET" "DELETE" "POST" "PUT" }}
 	if err := ctx.ShouldBindQuery(&in); err != nil {
 		s.resp.ParamsError(ctx, err)
 		return
 	}
-{{else if eq .Method "POST" "PUT" }}
 	if err := ctx.ShouldBindJSON(&in); err != nil {
 		s.resp.ParamsError(ctx, err)
 		return
