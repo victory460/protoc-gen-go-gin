@@ -1,6 +1,6 @@
 # protoc-gen-go-gin
 
-> 修改自 [kratos v2](https://github.com/go-kratos/kratos/tree/main/cmd/protoc-gen-go-http)
+> 修改自 [mohuishou](https://github.com/mohuishou/protoc-gen-go-gin)
 
 从 protobuf 文件中生成使用 gin 的 http rpc 服务
 ## 安装
@@ -14,7 +14,7 @@
 注意由于使用 embed 特性，Go 版本必须大于 1.16
 
 ```bash
-go install github.com/mohuishou/protoc-gen-go-gin@latest
+go install github.com/victory460/protoc-gen-go-gin@latest
 ```
 
 ## 使用说明
@@ -65,10 +65,3 @@ service BlogService {
   --go-gin_out ./example/api --go-gin_opt=paths=source_relative \
   example/api/product/app/v1/v1.proto
 ```
-
-## 相关介绍
-
-> 待发布
-
-- Go工程化(四) API 设计上: 项目结构 & 设计
-- Go工程化(五) API 设计下: 基于 protobuf 自动生成 gin 代码
