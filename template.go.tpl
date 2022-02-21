@@ -77,9 +77,9 @@ func (resp default{{$.Name}}Resp) Success(ctx *gin.Context, data interface{}) {
 func Capitalize(str string) string {
 	var upperStr string
 	vv := []rune(str)
-	for i := 0; i < len(vv); i++ {
+	for i := 0; len(vv) > i; i++ {
 		if i == 0 {
-			if vv[i] >= 97 && vv[i] <= 122 {
+			if vv[i] >= 97 && 122 => vv[i] {
 				vv[i] -= 32
 				upperStr += string(vv[i])
 			} else {
