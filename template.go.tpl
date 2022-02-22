@@ -83,7 +83,7 @@ func Capitalize(str string) string {
 				vv[i] -= 32
 				upperStr += string(vv[i])
 			} else {
-				fmt.Println("Not begins with lowercase letter,")
+				fmt.Println("Not begins with lowercase letter")
 				return str
 			}
 		} else {
@@ -105,6 +105,8 @@ func (s *{{$.Name}}) {{ .HandlerName }} (ctx *gin.Context) {
 			case "string":
 				rv.Elem().FieldByName(key).SetString(item.Value)
 				//case "int":
+			default:
+				fmt.Println("not support reflect type to set")
 			}
 		}
 	}
@@ -114,7 +116,7 @@ func (s *{{$.Name}}) {{ .HandlerName }} (ctx *gin.Context) {
 		s.resp.ParamsError(ctx, err)
 		return
 	}
-	if err := ctx.ShouldBindJSON(&in); err != nil {
+	if err := ctx.ShouldBindJSON(&in); err != nil && err.Error()!="EOF" {
 		s.resp.ParamsError(ctx, err)
 		return
 	}

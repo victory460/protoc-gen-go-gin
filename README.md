@@ -65,3 +65,7 @@ service BlogService {
   --go-gin_out ./example/api --go-gin_opt=paths=source_relative \
   example/api/product/app/v1/v1.proto
 ```
+
+### TODO
+- query参数支持
+- support more reflect type in uri params

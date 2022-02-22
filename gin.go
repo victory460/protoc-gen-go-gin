@@ -13,6 +13,8 @@ import (
 
 const (
 	contextPkg         = protogen.GoImportPath("context")
+	fmtPkg             = protogen.GoImportPath("fmt")
+	reflectPkg         = protogen.GoImportPath("reflect")
 	ginPkg             = protogen.GoImportPath("github.com/gin-gonic/gin")
 	errPkg             = protogen.GoImportPath("errors")
 	metadataPkg        = protogen.GoImportPath("google.golang.org/grpc/metadata")
@@ -36,6 +38,7 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	g.P("// is compatible with the victory460/protoc-gen-go-gin package it is being compiled against.")
 	g.P("// ", contextPkg.Ident(""), metadataPkg.Ident(""))
 	g.P("//", ginPkg.Ident(""), errPkg.Ident(""))
+	g.P("//", fmtPkg.Ident(""), reflectPkg.Ident(""))
 	g.P()
 
 	for _, service := range file.Services {
