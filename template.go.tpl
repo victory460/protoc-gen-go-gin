@@ -79,14 +79,9 @@ func Capitalize(str string) string {
 	vv := []rune(str)
 	for i := 0; len(vv) > i; i++ {
 		if i == 0 {
-			if vv[i] >= 97 && 122 => vv[i] {
-				vv[i] -= 32
-				upperStr += string(vv[i])
-			} else {
-				fmt.Println("Not begins with lowercase letter,")
-				return str
-			}
-		} else {
+			vv[i] -= 32
+			upperStr += string(vv[i])
+		}else {
 			upperStr += string(vv[i])
 		}
 	}
