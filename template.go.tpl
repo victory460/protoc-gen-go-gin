@@ -83,7 +83,7 @@ func Capitalize(str string) string {
 				vv[i] -= 32
 				upperStr += string(vv[i])
 			} else {
-				fmt.Println("Not begins with lowercase letter")
+				fmt.Println("Not begins with lowercase letter,")
 				return str
 			}
 		} else {
